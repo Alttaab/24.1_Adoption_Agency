@@ -1,0 +1,31 @@
+{% extends 'base.html' %}
+
+{% block title %} Adoptabl {% endblock title %}
+
+{% block content %}
+
+<div class="pb-4">
+  
+  <h1>Adoption List</h1>
+  <a href="/add" class="btn badge-success">add a pet</a>
+</div>
+
+  <div class="row">
+    {% for pet in pets %}
+      <div class="col-sm-4 pb-4">
+        <a href="/pets/{{pet.id}}">
+      <div class="card">
+          <img class="card-img-top image-responsive" src="{{pet.photo_url}}" alt="Card image cap">
+          <div class="card-body">
+            <h5 class="card-title text-dark">{{pet.name}}</h5>
+            <p class="card-text text-dark">{{pet.notes}}</p>
+          </div>
+          <div class="card-footer text-right">
+            <small class="badge {% if pet.available == True %}badge-success {% else %}badge-secondary{% endif %}">{% if pet.available == True %}{{pet.name}} is available!{% else %}{{pet.name}} is unavailable{% endif %}</small>
+          </div>
+        </div>
+      </a>
+      </div>
+    {% endfor %}
+</div>
+{% endblock content %}

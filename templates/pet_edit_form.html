@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block title %} Adoptabl {% endblock title %}
+
+{% block content %}
+
+<h1>Editing {{pet.name}}</h1>
+  <div class="row">
+  
+    <form id="pet-add-form" method="post">
+      {{ form.hidden_tag() }}
+
+    {% for field in form
+      if field.widget.input_type != 'hidden' %}
+
+    <div class="col-sm-4 pb-4">
+      {{ field.label }}
+      {{ field }}
+
+      {% for error in field.errors %}
+      {{ error }}
+      {% endfor %}
+    
+    </div>
+
+    {% endfor %}
+    <button type="submit">Submit</button>
+  </form>
+</div>
+{% endblock content %}
